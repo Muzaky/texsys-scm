@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('bahan_baku', function (Blueprint $table) {
             $table->id();
+            $table->string('nama')->unique();
+            $table->string('satuan');
+            $table->decimal('stok_level', 15, 2)->default(0);
+            $table->decimal('harga', 15, 2)->default(0);
             $table->timestamps();
         });
     }
