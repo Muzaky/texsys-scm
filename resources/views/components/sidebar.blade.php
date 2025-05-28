@@ -14,9 +14,27 @@
             </li>
         
             <li class="mb-3">
-            <a href="{{ route('sales') }}" class="flex items-center p-3 rounded-lg 
-                    {{ Route::currentRouteName() == 'sales'? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-600 hover:bg-gray-100' }}">
-                    <i class="fas fa-money-bill-wave mr-3"></i> Stock Record
+            <a href="{{ route('materialstock') }}" class="flex items-center p-3 rounded-lg 
+                    {{ Route::currentRouteName() == 'materialstock'? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-600 hover:bg-gray-100' }}">
+                    <i class="fas fa-money-bill-wave mr-3"></i> Material Stock Record
+                </a>
+            </li>
+            <li class="mb-3">
+            <a href="{{ route('productstock') }}" class="flex items-center p-3 rounded-lg 
+                    {{ Route::currentRouteName() == 'productstock'? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-600 hover:bg-gray-100' }}">
+                    <i class="fas fa-money-bill-wave mr-3"></i> Product Stock Record
+                </a>
+            </li>
+            <li class="mb-3">
+                <a href="{{ route('sales') }}" class="flex items-center p-3 rounded-lg 
+                {{ Route::currentRouteName() == 'sales'? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-600 hover:bg-gray-100' }}">
+                <i class="fas fa-money-bill-wave mr-3"></i> Histori Penjualan
+            </a>
+            </li>
+            <li class="mb-3">
+            <a href="{{ route('transactionlogs') }}" class="flex items-center p-3 rounded-lg 
+                    {{ Route::currentRouteName() == 'transactionlogs'? 'bg-purple-100 text-purple-700 font-semibold' : 'text-gray-600 hover:bg-gray-100' }}">
+                    <i class="fas fa-money-bill-wave mr-3"></i> Transaction Log
                 </a>
             </li>
             <li class="mb-3">

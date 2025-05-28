@@ -32,20 +32,18 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Kode Penjualan
+                                    Kode Transaksi
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    ID Produk
+                                    Tipe Item
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Tanggal Penjualan
+                                    Tipe Transaksi
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Jumlah Penjualan
+                                    Jumlah
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Total Harga
-                                </th>
+                               
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -54,21 +52,21 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-05-20</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Kain Sutra</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">20 Meter</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 2.000.000</td>
+                               
                             </tr>
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#TDX110</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-05-22</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Kain Seragam</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">18 Meter</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 1.250.000</td>
+                               
                             </tr>
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#TDX112</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-05-24</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Kain Katun</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">25 Meter</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">Rp 1.750.000</td>
+                               
                             </tr>
                         </tbody>
                     </table>

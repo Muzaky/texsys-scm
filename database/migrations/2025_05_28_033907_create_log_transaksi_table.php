@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('log_transaksi', function (Blueprint $table) {
             $table->id();
+            $table->date('tanggal');
             $table->enum('tipe_item', ['bahan_baku', 'produk_jadi']);
+            $table->integer('item_id');
             $table->string('tipe_transaksi', 50);
             $table->decimal('jumlah', 15, 2)->default(0);
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
     }
