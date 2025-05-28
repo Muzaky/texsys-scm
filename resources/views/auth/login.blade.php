@@ -23,7 +23,7 @@
         <div class="flex flex-col items-center mb-8">
             <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">O</div>
             <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back!</h1>
-            <p class="text-gray-600 text-center">Log in to your Texsys account.</p>
+            <p class="text-gray-600 text-center">Log in to your Trijaya Chain account.</p>
         </div>
 
         <form class="space-y-6">

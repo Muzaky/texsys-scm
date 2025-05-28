@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +27,13 @@ Route::get(uri:'/login', action: [AuthController::class, 'index'])
 Route::get(uri:'/sales', action: [SalesController::class, 'index'])
     ->name('sales');
 
-Route::get('/dashboard', function () {
-    return view('dashboard/dashboard');
-})->name('dashboard');
+Route::get(uri:'/dashboard', action: [DashboardController::class, 'index'])
+    ->name('dashboard');
+
+Route::get(uri:'/forecast', action: [ForecastController::class, 'index'])
+    ->name('forecast');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard/dashboard');
+// })->name('dashboard');
 
