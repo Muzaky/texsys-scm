@@ -1,7 +1,11 @@
 @extends('layouts.master')
 @section('title', 'Sales')
 @section('content')
+    
+  
 
+
+                            
 {{-- Wrapper untuk state Alpine.js --}}
 <div x-data="{ isModalOpen: false }">
 
@@ -49,11 +53,14 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                        
+                            
+                       
                              @if (isset($penjualan) && $penjualan->count() > 0)
                             @foreach ($penjualan as $item)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">TRF{{ $item->id }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">TDP{{ $item->produk_jadi_id }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->produkJadi->kategori }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->tanggal_penjualan }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->jumlah_terjual }}</td>
                                 

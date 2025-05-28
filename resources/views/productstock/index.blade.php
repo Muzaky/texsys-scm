@@ -50,7 +50,7 @@
                             @if (isset($product) && $product->count() > 0)
                             @foreach ($product as $item)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">TDX{{ $item->id }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">TDP{{ $item->id }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->kategori }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->stok_level }}</td>
                                 
