@@ -47,27 +47,17 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                            @if (isset($product) && $product->count() > 0)
+                            @foreach ($product as $item)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#TDX111</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-05-20</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Kain Sutra</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">20 Meter</td>
-                               
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">TDX{{ $item->id }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->kategori }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->stok_level }}</td>
+                                
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->harga }}</td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#TDX110</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-05-22</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Kain Seragam</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">18 Meter</td>
-                               
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#TDX112</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-05-24</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Kain Katun</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">25 Meter</td>
-                               
-                            </tr>
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
