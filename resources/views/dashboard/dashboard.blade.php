@@ -10,15 +10,6 @@
         <main class="flex-1 p-8 overflow-y-auto custom-scrollbar">
             <header class="flex justify-between items-center mb-8">
                 <h1 class="text-3xl font-semibold text-gray-900">Selamat Datang, Ligar</h1>
-                <div class="flex items-center space-x-4">
-                    <button class="p-2 rounded-full hover:bg-gray-100 text-gray-600">
-                        <i class="fas fa-bell text-xl"></i>
-                    </button>
-                    <button
-                        class="bg-purple-600 text-white px-4 py-2 rounded-full font-medium shadow-md hover:bg-purple-700 transition-colors">
-                        Akun
-                    </button>
-                </div>
             </header>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">

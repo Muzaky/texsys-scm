@@ -10,6 +10,7 @@ class MaterialController extends Controller
     public function index()
     {
         $material = BahanBaku::all();
+        
         return view('materialstock.index', data:['material' => $material]);
     }
 }

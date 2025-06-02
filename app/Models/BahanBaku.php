@@ -33,4 +33,9 @@ class BahanBaku extends Model
        
         return $this->hasMany(ResepProduk::class, 'bahan_baku_id');
     }
+
+    public function bahanBaku()
+{
+    return $this->belongsTo(BahanBaku::class, 'bahan_baku_id');
+}
 }

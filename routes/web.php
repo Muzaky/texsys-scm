@@ -35,6 +35,9 @@ Route::get(uri:'/materialstock', action: [MaterialController::class, 'index'])
 
 Route::get(uri:'/productstock', action: [ProductController::class, 'index'])
     ->name('productstock');
+Route::post('/product-stock/add-stock', [ProductController::class, 'addStock'])->name('produkjadi.addstock');
+Route::post('/product-stock/reduce-stock', [ProductController::class, 'reduceStock'])->name('produkjadi.reducestock');
+
     
 Route::get(uri:'/transactionlogs', action: [LogController::class, 'index'])
     ->name('transactionlogs');

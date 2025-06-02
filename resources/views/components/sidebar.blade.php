@@ -1,7 +1,6 @@
 <aside class="w-64 bg-white p-6 flex flex-col rounded-r-2xl shadow-lg flex-shrink-0 mr-0 md:mr-8"> 
-    <div class="flex items-center mb-10">
-        <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white text-lg font-bold mr-3">O</div>
-        <span class="text-2xl font-bold text-gray-800">Trijaya Chain</span>
+    <div class="flex items-center mb-2">
+            <img src="{{ asset('img/Logo.png') }}" alt="Logo" class="w-64 h-16 flex items-center">
     </div>
 
     <nav class="flex-grow">

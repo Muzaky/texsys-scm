@@ -9,7 +9,7 @@ class LogController extends Controller
 {
     public function index()
     {
-        $logtransactions = LogTransaksi::orderBy('tanggal', 'desc')
+        $logtransactions = LogTransaksi::orderBy('id', 'desc')
             ->paginate(20);
         return view('transactionlogs.index', ['logtransactions' => $logtransactions]);
     }
