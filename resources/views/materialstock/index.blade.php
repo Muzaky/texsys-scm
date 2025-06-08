@@ -2,20 +2,20 @@
 @section('title', 'Sales')
 @section('content')
 
-{{-- Wrapper untuk state Alpine.js --}}
+
 <div x-data="{ isModalOpen: false }">
 
     <main class="flex-1 flex flex-row overflow-hidden">
         
         @include('components.sidebar') 
 
-        {{-- Main Content Area (Table) --}}
+ 
         <div class="flex-1 p-8 overflow-y-auto custom-scrollbar">
             <div class="bg-white p-6 rounded-2xl shadow-md">
-                {{-- Baris Judul dan Tombol Tambah Data --}}
+           
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-semibold text-gray-800">Data Inventory Stock Bahan Baku</h2>
-                    {{-- TOMBOL TAMBAH DATA (Menggunakan Alpine.js untuk membuka modal) --}}
+                    
                     <button type="button"
                             x-on:click="isModalOpen = true"
                             class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out shadow-sm">
@@ -25,7 +25,7 @@
                         Tambah Data
                     </button>
                 </div>
-                {{-- Akhir Baris Judul dan Tombol Tambah Data --}}
+                
                 
                 <div class="overflow-x-auto rounded-lg border border-gray-200">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -69,7 +69,7 @@
         </div>
     </main>
 
-    {{-- MODAL UNTUK TAMBAH DATA PENJUALAN --}}
+   
     <div x-show="isModalOpen"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0"
@@ -78,10 +78,10 @@
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center p-4 z-50"
-         style="display: none;" {{-- Awalnya disembunyikan, Alpine.js yang mengontrol --}}
-         x-on:keydown.escape.window="isModalOpen = false" {{-- Tutup modal dengan tombol Escape --}}
+         style="display: none;" 
+         x-on:keydown.escape.window="isModalOpen = false" 
          >
-        {{-- Konten Modal --}}
+        
         <div class="bg-white rounded-xl shadow-2xl p-6 md:p-8 w-full max-w-2xl transform transition-all overflow-y-auto max-h-[90vh]"
              x-show="isModalOpen"
              x-transition:enter="transition ease-out duration-300"
@@ -90,10 +90,10 @@
              x-transition:leave="transition ease-in duration-200"
              x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
              x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-             @click.away="isModalOpen = false" {{-- Tutup modal jika klik di luar konten modal --}}
+             @click.away="isModalOpen = false" 
              >
             
-            {{-- Header Modal --}}
+           
             <div class="flex items-center justify-between mb-6 pb-3 border-b border-gray-200">
                 <h3 class="text-xl font-semibold text-gray-900">
                     Tambah Data Penjualan Baru

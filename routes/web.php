@@ -29,6 +29,10 @@ Route::get(uri:'/login', action: [AuthController::class, 'index'])
 
 Route::get(uri:'/sales', action: [SalesController::class, 'index'])
     ->name('sales');
+Route::post(uri:'/sales/store', action: [SalesController::class, 'store'])
+    ->name('sales.store');
+Route::put('/sales/{sale}', [SalesController::class, 'update'])->name('sales.update'); 
+Route::delete('/sales/{sale}', [SalesController::class, 'destroy'])->name('sales.destroy'); 
 
 Route::get(uri:'/materialstock', action: [MaterialController::class, 'index'])
     ->name('materialstock');
@@ -52,4 +56,6 @@ Route::get(uri:'/forecast', action: [ForecastController::class, 'index'])
 // Route::get('/dashboard', function () {
 //     return view('dashboard/dashboard');
 // })->name('dashboard');
+
+
 

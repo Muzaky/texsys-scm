@@ -70,15 +70,15 @@ class ProductController extends Controller
             return response()->json(['success' => false, 'message' => 'Format Kode Item tidak valid.']);
         }
 
-        $produkJadi = ProdukJadi::find($itemId); //
+        $produkJadi = ProdukJadi::find($itemId); 
 
         if ($produkJadi) {
             return response()->json([
                 'success' => true,
                 'id' => $produkJadi->id,
-                'kategori' => $produkJadi->kategori, //
-                'satuan' => $produkJadi->satuan, //
-                'stok_sekarang' => $produkJadi->stok_level //
+                'kategori' => $produkJadi->kategori, 
+                'satuan' => $produkJadi->satuan, 
+                'stok_sekarang' => $produkJadi->stok_level 
             ]);
         } else {
             return response()->json(['success' => false, 'message' => 'Bahan baku tidak ditemukan.']);
@@ -99,12 +99,12 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $produkJadiId = $request->produk_jadi_id_hidden;
-            $jumlahProdukJadiDitambah = (float)$request->jumlah_stok; // Jumlah Produk Jadi yang ditambahkan
+            $jumlahProdukJadiDitambah = (float)$request->jumlah_stok; 
             $catatanOperasi = $request->catatan_stok ?? 'Penambahan stok produk jadi (hasil produksi).';
 
             Log::info("Attempting to add stock for ProdukJadi ID: {$produkJadiId}, Jumlah Produksi: {$jumlahProdukJadiDitambah}");
 
-            $produkJadi = ProdukJadi::with('resepProduk.bahanBaku')->find($produkJadiId); // Eager load resep dan bahan baku terkait
+            $produkJadi = ProdukJadi::with('resepProduk.bahanBaku')->find($produkJadiId); 
 
             if (!$produkJadi) {
                 DB::rollBack();
@@ -115,7 +115,7 @@ class ProductController extends Controller
          
             if ($produkJadi->resepProduk && $produkJadi->resepProduk->count() > 0) {
                 foreach ($produkJadi->resepProduk as $itemResep) {
-                    $bahanBaku = $itemResep->bahanBaku; // Akses bahan baku dari relasi di ResepProduk
+                    $bahanBaku = $itemResep->bahanBaku; 
                     if (!$bahanBaku) {
                         DB::rollBack();
                         Log::error("Bahan Baku dengan ID: {$itemResep->bahan_baku_id} pada resep Produk Jadi ID: {$produkJadi->id} tidak ditemukan.");
@@ -143,7 +143,7 @@ class ProductController extends Controller
                             'item_id' => $bahanBaku->id,
                             'tipe_transaksi' => 'PENGGUNAAN_PRODUKSI',
                             'jumlah' => $jumlahBahanDibutuhkanTotal, // Jumlah yang digunakan (positif)
-                            'catatan' => "Digunakan untuk produksi {$jumlahProdukJadiDitambah} unit Produk Jadi: {$produkJadi->kategori} (ID: {$produkJadi->id})",
+                            'catatan' => "Digunakan untuk produksi {$jumlahProdukJadiDitambah} unit Produk Jadi: {$produkJadi->kategori} (ID: TDP{$produkJadi->id})",
                         ]);
                     }
                 }
@@ -163,7 +163,7 @@ class ProductController extends Controller
                     'tanggal' => now()->toDateString(),
                     'tipe_item' => 'produk_jadi',
                     'item_id' => $produkJadi->id,
-                    'tipe_transaksi' => 'HASIL_PRODUKSI', // Tipe transaksi lebih spesifik
+                    'tipe_transaksi' => 'HASIL_PRODUKSI',
                     'jumlah' => $jumlahProdukJadiDitambah,
                     'catatan' => $catatanOperasi,
                 ]);
@@ -188,26 +188,23 @@ class ProductController extends Controller
         }
     }
 
-    /**
-     * Fungsi BARU untuk mengurangi stok produk jadi.
-     */
+    
     public function reduceStock(Request $request)
     {
-        // Validasi dasar input
-        // Menggunakan 'jumlah_stok' sebagai nama input generik dari form
+        
         if (!$request->filled('produk_jadi_id_hidden') || !$request->filled('jumlah_stok') || !is_numeric($request->jumlah_stok) || (float)$request->jumlah_stok <= 0) {
             Log::warning('Reduce Stock Validation Failed: Input tidak valid.', ['request_data' => $request->all()]);
             return redirect()->back()
                 ->with('error', 'Input tidak valid. Pastikan produk dipilih dan jumlah pengurangan adalah angka positif.')
                 ->withInput()
-                ->with('error_modal', 'addProdukStockModal'); // Menggunakan modal yang sama, atau buat yang baru 'reduceProdukStockModal'
+                ->with('error_modal', 'addProdukStockModal'); 
         }
 
         DB::beginTransaction();
         try {
             $produkJadiId = $request->produk_jadi_id_hidden;
-            $jumlahStokOperasi = (float)$request->jumlah_stok; // Menggunakan nama input generik
-            $catatan = $request->catatan_stok ?? 'Pengurangan stok produk jadi manual.'; // Menggunakan nama input generik
+            $jumlahStokOperasi = (float)$request->jumlah_stok; 
+            $catatan = $request->catatan_stok ?? 'Pengurangan stok produk jadi manual.';
 
             Log::info("Attempting to reduce stock for ProdukJadi ID: {$produkJadiId}, Jumlah Pengurangan: {$jumlahStokOperasi}");
 
@@ -241,8 +238,8 @@ class ProductController extends Controller
                     'tanggal' => now()->toDateString(),
                     'tipe_item' => 'produk_jadi',
                     'item_id' => $produkJadi->id,
-                    'tipe_transaksi' => 'PENGURANGAN_STOK_PRODUK', // Tipe transaksi berbeda
-                    'jumlah' => $jumlahStokOperasi, // Jumlah yang dikurangkan (tetap positif di log, tipe transaksi yang membedakan)
+                    'tipe_transaksi' => 'PENGURANGAN_STOK_PRODUK', 
+                    'jumlah' => $jumlahStokOperasi, 
                     'catatan' => $catatan,
                 ]);
 
