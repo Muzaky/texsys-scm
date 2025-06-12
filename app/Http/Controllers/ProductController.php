@@ -30,7 +30,7 @@ class ProductController extends Controller
 
 
         $filterStokLebihBesar50 = $request->input('filter_stok_lebih_besar_50') == '1';
-        $filterHargaLebihBesar500k = $request->input('filter_harga_lebih_besar_1000000') == '1';
+        $filterHargaLebihBesar500k = $request->input('filter_harga_lebih_besar_500000') == '1';
 
         if ($filterStokLebihBesar50) {
             $productquery->where('stok_level', '>', 50);

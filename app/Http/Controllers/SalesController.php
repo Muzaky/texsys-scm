@@ -105,7 +105,7 @@ class SalesController extends Controller
                     'tipe_item' => 'produk_jadi', //
                     'item_id' => $produkJadi->id, //
                     'tipe_transaksi' => 'PENJUALAN', //
-                    'jumlah' => $validatedData['jumlah_terjual'],
+                    'jumlah' =>  -$validatedData['jumlah_terjual'], //
                     'catatan' => $validatedData['catatan_penjualan'] ?? "Penjualan produk {$produkJadi->kategori}, ID Penjualan: {$penjualan->id}",
                 ]);
                 Log::info("Log transaksi untuk penjualan ID {$penjualan->id} berhasil dicatat.");

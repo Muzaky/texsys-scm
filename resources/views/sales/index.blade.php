@@ -103,7 +103,7 @@
 
 }" x-init="updateProdukDetailsAdd(); if(isEditModalOpen && '{{ old('produk_jadi_id_edit') }}') { selectedProdukIdEdit = '{{ old('produk_jadi_id_edit') }}'; jumlahTerjualEdit = {{ old('jumlah_terjual_edit', 1) }}; updateProdukDetailsEdit(); }">
 
-    <main class="flex-1 flex flex-row overflow-hidden">
+    <main class="flex-1 flex flex-row overflow-hidden font-[Montserrat]">
         
         @include('components.sidebar') 
 
@@ -138,7 +138,7 @@
                 {{-- Form Pencarian untuk tabel penjualan --}}
                 <form method="GET" action="{{ route('sales') }}" class="mb-6">
                     <div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-end">
-                            <div class="md:col-span-5">
+                            <div class="md:col-span-4">
                                 <input type="text" name="search_sales" value="{{ $searchQuery ?? '' }}"
                                     placeholder="Cari ID Penjualan atau Kategori Produk..."
                                     class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2.5 px-3">
@@ -146,7 +146,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">&nbsp;</label>
                                 <button type="submit"
-                                    class="w-full mt-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out shadow-sm">
+                                    class="w-full mt-1 bg-blue-600 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out shadow-sm">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -155,9 +155,9 @@
                                     Search
                                 </button>
                             </div>
-                            <div>
+                       
                                 <button type="button" x-on:click="isModalOpen = true; resetModal()"
-                                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out shadow-sm w-full justify-center">
+                                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-normal py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out shadow-sm w-full justify-center col-span-2" >
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -165,7 +165,7 @@
                                     </svg>
                                     Tambah Penjualan
                                 </button>
-                            </div>
+                            
 
 
                         </div>

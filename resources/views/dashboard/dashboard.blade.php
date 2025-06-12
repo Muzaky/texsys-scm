@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <body class="flex min-h-screen">
+    <body class="flex min-h-screen font-[Montserrat]">
 
         @include('components.sidebar')
 
@@ -24,13 +24,12 @@
                             </button>
                         </div>
 
-                        <div
-                            class="w-full h-40 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 text-sm mb-6">
-                            <p class="text-center">Placeholder untuk Grafik Penjualan</p>
+                        <div class="w-full h-64 mb-6">
+                            <canvas id="salesChart"></canvas>
                         </div>
 
                         <div class="flex space-x-2 mb-6">
-                            {{-- Tombol Filter Periode --}}
+                          
                             <a href="{{ route('dashboard', ['periode' => '1M']) }}"
                                 class="px-4 py-2 rounded-full text-sm font-medium 
                   {{ $periodeAktif === '1M' ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
@@ -41,7 +40,12 @@
                   {{ $periodeAktif === '3M' ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
                                 3 Bulan
                             </a>
-                            <a href="{{ route('dashboard', ['periode' => 'semua']) }}" 
+                            <a href="{{ route('dashboard', ['periode' => '6M']) }}"
+                                class="px-4 py-2 rounded-full text-sm font-medium 
+                  {{ $periodeAktif === '6M' ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
+                                6 Bulan
+                            </a>
+                            <a href="{{ route('dashboard', ['periode' => 'semua']) }}"
                                 class="px-4 py-2 rounded-full text-sm font-medium 
                   {{ $periodeAktif === 'semua' ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
                                 Semua
@@ -68,7 +72,7 @@
                         </div>
                     </div>
 
-                  
+
                     <div class="bg-white p-6 rounded-2xl shadow-md mt-6">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-lg font-semibold text-gray-700">RINCIAN PENJUALAN ({{ $keteranganPeriode }})
@@ -112,7 +116,7 @@
                                                 {{ $index + 1 }}
                                             </td>
                                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                                {{ \Carbon\Carbon::parse($item->tanggal_penjualan)->isoFormat('D MMM YYYY, HH:mm') }}
+                                                {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('D MMM YYYY, HH:mm') }}
                                             </td>
                                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
                                                 {{ $item->produkJadi->kategori ?? 'N/A' }}
@@ -139,7 +143,7 @@
                             </table>
                         </div>
 
-                      
+
                         <div class="mt-4">
                             {{ $penjualanPadaPeriodePaginate->appends(['periode' => $periodeAktif])->links() }}
                         </div>
@@ -168,7 +172,7 @@
 
                             <ul class="space-y-4">
                                 @php
-                                   
+
                                     $bgColors = [
                                         'bg-yellow-100',
                                         'bg-blue-100',
@@ -183,14 +187,14 @@
                                         'text-purple-600',
                                         'text-pink-600',
                                     ];
-                                   
+
                                 @endphp
                                 @foreach ($bahanBakuTeratas as $index => $item)
                                     <li class="flex justify-between items-center">
                                         <div class="flex items-center">
                                             <div
                                                 class="w-8 h-8 rounded-full {{ $bgColors[$index % count($bgColors)] }} flex items-center justify-center mr-3">
-                                                {{-- Anda bisa mengganti ini dengan inisial nama atau ikon default --}}
+
                                                 <span
                                                     class="{{ $textColors[$index % count($textColors)] }} font-semibold text-sm">
                                                     {{ strtoupper(substr($item->nama, 0, 1)) }}
@@ -198,10 +202,7 @@
                                             </div>
                                             <div>
                                                 <p class="font-medium text-gray-800">{{ $item->nama }}</p>
-                                                {{-- Menampilkan stok dan satuan. 'FDX111' adalah placeholder di HTML Anda,
-                                 jika Anda punya kolom kode_bahan_baku, bisa diganti.
-                                 Contoh: <p class="text-sm text-gray-500">{{ $item->kode_bahan_baku ?? ($item->stok_level . ' ' . $item->satuan) }}</p>
-                            --}}
+
                                                 <p class="text-sm text-gray-500">
                                                     Stock: {{ number_format($item->stok_level, 0, ',', '.') }}
                                                     {{ $item->satuan }}
@@ -218,7 +219,7 @@
                         @else
                             <p class="text-gray-500 text-sm">Tidak ada data rincian stok bahan baku untuk ditampilkan.</p>
                         @endif
-                        {{-- Tombol "Lihat Semua" bisa diletakkan di sini jika daftar di atas hanya ringkasan --}}
+
                         @if (isset($bahanbaku) && $bahanbaku->count() > (isset($bahanBakuTeratas) ? $bahanBakuTeratas->count() : 0))
                             <div class="mt-4 text-center">
                                 <a href="{{ route('bahanbaku.index') }}"
@@ -231,7 +232,7 @@
 
 
 
-                    {{-- Contoh untuk Produk Jadi (sesuaikan dengan $produkJadi dan $totalNilaiProdukJadi) --}}
+
                     <div class="bg-white p-6 rounded-2xl shadow-md mt-6">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-lg font-semibold text-gray-700">STOCK PRODUK JADI</h2>
@@ -249,21 +250,20 @@
                         </div>
 
                         <h3 class="text-md font-semibold text-gray-700 mb-3">Rincian Stock (Beberapa Item)</h3>
-                        @if (isset($produkJadi) && $produkJadi->take(3)->count() > 0) {{-- Ambil 3 produk jadi teratas --}}
+                        @if (isset($produkJadi) && $produkJadi->take(3)->count() > 0)
                             <ul class="space-y-4">
                                 @php
                                     $bgColorsProduk = ['bg-red-100', 'bg-indigo-100', 'bg-teal-100'];
                                     $textColorsProduk = ['text-red-600', 'text-indigo-600', 'text-teal-600'];
                                 @endphp
                                 @foreach ($produkJadi->take(3) as $index => $item)
-                                    {{-- Menampilkan 3 item pertama, atau sesuaikan dengan $produkJadiUntukCard jika Anda membuatnya --}}
                                     <li class="flex justify-between items-center">
                                         <div class="flex items-center">
                                             <div
                                                 class="w-8 h-8 rounded-full {{ $bgColorsProduk[$index % count($bgColorsProduk)] }} flex items-center justify-center mr-3">
                                                 <span
                                                     class="{{ $textColorsProduk[$index % count($textColorsProduk)] }} font-semibold text-sm">
-                                                    {{ strtoupper(substr($item->kategori, 0, 1)) }} {{-- Menggunakan kolom 'kategori' sesuai migrasi --}}
+                                                    {{ strtoupper(substr($item->kategori, 0, 1)) }}
                                                 </span>
                                             </div>
                                             <div>
@@ -284,14 +284,7 @@
                             <p class="text-gray-500 text-sm">Tidak ada data rincian stok produk jadi untuk ditampilkan.</p>
                         @endif
 
-                        {{-- @if (isset($produkJadi) && $produkJadi->count() > 3)
-                            <div class="mt-4 text-center">
-                                <a href="{{ route('produkjadi.index') }}"
-                                    class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                                    Lihat Semua Produk Jadi &rarr;
-                                </a>
-                            </div>
-                        @endif --}}
+
                     </div>
 
                 </section>
@@ -301,3 +294,98 @@
 
     </body>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Pastikan variabel dari controller ada sebelum menjalankan script
+            @if (isset($monthlySalesData) && isset($keteranganPeriode))
+                const ctx = document.getElementById('salesChart').getContext('2d');
+
+                // Ambil data dari controller dan konversi ke format JSON untuk JavaScript
+                const salesLabels = @json($monthlySalesData['labels']);
+                const salesData = @json($monthlySalesData['data']);
+                const keteranganPeriode = @json($keteranganPeriode);
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: salesLabels,
+                        datasets: [{
+                            label: 'Total Penjualan',
+                            data: salesData,
+                            backgroundColor: 'rgba(129, 10, 209, 0.1)', // Warna ungu lebih pekat
+                            borderColor: 'rgba(129, 10, 209, 1)', // Warna ungu lebih pekat
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            // --- PERUBAHAN UTAMA DI SINI ---
+                            // Menambahkan judul dinamis ke dalam chart
+                            title: {
+                                display: true,
+                                text: 'Grafik Penjualan (' + keteranganPeriode + ')',
+                                font: {
+                                    size: 16,
+                                    weight: '600' // semi-bold
+                                },
+                                color: '#4b5563', // text-gray-600
+                                padding: {
+                                    top: 5,
+                                    bottom: 25 // Beri jarak antara judul dan chart
+                                }
+                            },
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            // Format angka sebagai mata uang Rupiah
+                                            label += new Intl.NumberFormat('id-ID', {
+                                                style: 'currency',
+                                                currency: 'IDR',
+                                                minimumFractionDigits: 0
+                                            }).format(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    // Callback untuk memformat label sumbu Y (misal: 1jt, 500rb)
+                                    callback: function(value) {
+                                        if (value >= 1000000) return 'Rp ' + (value / 1000000) + 'jt';
+                                        if (value >= 1000) return 'Rp ' + (value / 1000) + 'rb';
+                                        return 'Rp ' + value;
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false // Sembunyikan grid vertikal agar lebih bersih
+                                }
+                            }
+                        }
+                    }
+                });
+            @endif
+        });
+    </script>
+@endpush

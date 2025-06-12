@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Forecast')
 @section('content')
-<main class="flex-1 flex flex-row overflow-hidden">
+<main class="flex-1 flex flex-row overflow-hidden font-[Montserrat]">
     
     @include('components.sidebar')
 

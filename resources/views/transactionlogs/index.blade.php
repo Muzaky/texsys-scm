@@ -5,7 +5,7 @@
     {{-- Wrapper untuk state Alpine.js --}}
     <div x-data="{ isModalOpen: false }">
 
-        <main class="flex-1 flex flex-row overflow-hidden">
+        <main class="flex-1 flex flex-row overflow-hidden font-[Montserrat]">
 
             @include('components.sidebar')
 

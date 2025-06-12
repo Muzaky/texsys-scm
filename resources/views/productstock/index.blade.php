@@ -62,7 +62,7 @@
         }
     }" x-init="initSelectedProdukDetails()">
 
-        <main class="flex-1 flex flex-row overflow-hidden">
+        <main class="flex-1 flex flex-row overflow-hidden font-[Montserrat]">
 
             @include('components.sidebar')
 
@@ -70,8 +70,8 @@
             <div class="flex-1 p-8 overflow-y-auto custom-scrollbar">
                 <div class="bg-white p-6 rounded-2xl shadow-md">
 
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-2xl font-semibold text-gray-800">Data Inventory Produk</h2>
+                    <div class="flex justify-between items-center ">
+                        <h2 class="text-2xl font-normal text-gray-800">Data Inventory Produk</h2>
                     </div>
 
                     {{-- Notifikasi --}}
@@ -97,10 +97,10 @@
                     @endif
 
                     <form method="GET" action="{{ url()->current() }}" id="mainSearchFilterForm" class="mb-6">
-                        <div class="grid grid-cols-1 md:grid-cols-8 gap-4 items-end">
+                        <div class="grid grid-cols-1 md:grid-cols-9 gap-4 items-end">
 
                             <div class="md:col-span-5">
-                                <label for="search" class="block text-m font-medium text-gray-700 mb-1">Cari</label>
+
                                 <input type="text" name="search" id="search"
                                     class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2.5 px-3"
                                     placeholder="Kode Item atau Nama Produk Jadi..." value="{{ request('search') }}">
@@ -114,7 +114,7 @@
                             <div>
                                 <label cla{{--  --}}xt-gray-700 mb-1">&nbsp;</label>
                                 <button type="button" @click="isFilterModalOpen = true"
-                                    class="w-full mt-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out shadow-sm">
+                                    class="w-full mt-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-normal py-2 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out shadow-sm">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -129,7 +129,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">&nbsp;</label>
                                 <button type="submit"
-                                    class="w-full mt-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out shadow-sm">
+                                    class="w-full mt-1 bg-blue-600 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded-lg flex items-center justify-center transition duration-150 ease-in-out shadow-sm">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -140,37 +140,41 @@
                             </div>
 
                             <button type="button" x-on:click="isModalOpen = true"
-                                class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out shadow-sm justify-center">
+                                class="bg-indigo-600 hover:bg-indigo-700 text-white font-normal py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out shadow-sm col-span-2 justify-center">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>
-                                Tambah Data
+                                Tambah Stok Produk
                             </button>
                         </div>
                     </form>
-                    {{-- Akhir Baris Judul dan Tombol Tambah Data --}}
+
 
                     <div class="overflow-x-auto rounded-lg border border-gray-200">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                         Kode Item
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                         Nama
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                         Level Stok
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Harga
+                                        class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                        Kondisi
+                                    </th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                                        Harga/pcs
                                     </th>
 
                                 </tr>
@@ -183,10 +187,27 @@
                                                 TDP{{ $item->id }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {{ $item->kategori }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                                                 {{ $item->stok_level }}</td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                                @if ($item->stok_level > 50)
+                                                    <span
+                                                        class="px-4 inline-flex text-xs leading-5 font-normal rounded-full bg-green-100 text-green-800">
+                                                        Normal
+                                                    </span>
+                                                @elseif ($item->stok_level < 10 && $item->stok_level > 0)
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-normal rounded-full bg-yellow-100 text-yellow-800">
+                                                        Low Stock
+                                                    </span>
+                                                @else
+                                                    <span
+                                                        class="px-2 inline-flex text-xs leading-5 font-normal rounded-full bg-red-100 text-red-800">
+                                                        Out of Stock
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                                                 {{ $item->harga }}</td>
                                         </tr>
                                     @endforeach
@@ -222,7 +243,7 @@
                     </button>
                 </div>
 
-                {{-- Form dengan action dinamis --}}
+
                 <form
                     action="{{ old('operasiStok', 'tambah') === 'kurang' ? route('produkjadi.reducestock') : route('produkjadi.addstock') }}"
                     method="POST" id="stokOperationForm">
@@ -253,7 +274,7 @@
                             @enderror
                         </div>
 
-                        {{-- Pilihan Jenis Operasi --}}
+
                         <div x-show="foundProdukId" class="mt-4">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Operasi Stok</label>
                             <div class="flex space-x-4 items-center mt-2">
@@ -283,20 +304,20 @@
                             </div>
 
                             <div>
-                                {{-- Label dinamis untuk input jumlah --}}
+
                                 <label for="jumlah_stok_operasi" class="block text-sm font-medium text-gray-700 mb-1">
                                     Jumlah <span x-text="operasiStok === 'tambah' ? 'Tambah' : 'Kurang'"></span> Stok
                                 </label>
-                                {{-- Menggunakan satu nama input 'jumlah_stok' --}}
+
                                 <input type="number" step="1" name="jumlah_stok" id="jumlah_stok_operasi"
                                     value="{{ old('jumlah_stok', '') }}"
                                     class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2.5 px-3"
                                     placeholder="Masukkan jumlah (unit)">
-                                {{-- Error handling untuk 'jumlah_stok' (jika controller mengirim error dengan key ini) --}}
+
                                 @error('jumlah_stok')
                                     <span class="text-xs text-red-500 mt-1">{{ $message }}</span>
                                 @enderror
-                                {{-- Atau jika controller masih menggunakan nama spesifik: --}}
+
                                 @error('jumlah_tambah_stok')
                                     <span class="text-xs text-red-500 mt-1">{{ $message }}</span>
                                 @enderror
@@ -305,7 +326,7 @@
                                 @enderror
                             </div>
                             <div class="mt-4">
-                                {{-- Menggunakan satu nama input 'catatan_stok' --}}
+
                                 <label for="catatan_stok_operasi"
                                     class="block text-sm font-medium text-gray-700 mb-1">Catatan (Opsional)</label>
                                 <textarea name="catatan_stok" id="catatan_stok_operasi" rows="2"
@@ -361,7 +382,7 @@
                     </button>
                 </div>
 
-                {{-- Body Modal Filter --}}
+
                 <div class="space-y-4">
                     <div>
                         <label class="flex items-center cursor-pointer">

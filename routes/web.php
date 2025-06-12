@@ -7,6 +7,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\JITController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +21,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get(uri:'/login', action: [AuthController::class, 'index'])
+Route::get('/',[AuthController::class, 'index'])
     ->name('login');
+
+
+
+
 
 Route::get(uri:'/sales', action: [SalesController::class, 'index'])
     ->name('sales');
@@ -36,6 +38,7 @@ Route::delete('/sales/{sale}', [SalesController::class, 'destroy'])->name('sales
 
 Route::get(uri:'/materialstock', action: [MaterialController::class, 'index'])
     ->name('materialstock');
+Route::post('/materialstock/add-stock/{id}', [MaterialController::class, 'addStock'])->name('materialstock.addstock');
 
 Route::get(uri:'/productstock', action: [ProductController::class, 'index'])
     ->name('productstock');
@@ -53,9 +56,7 @@ Route::get(uri:'/dashboard', action: [DashboardController::class, 'index'])
 Route::get(uri:'/forecast', action: [ForecastController::class, 'index'])
     ->name('forecast');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard/dashboard');
-// })->name('dashboard');
-
+Route::get('/jit-analysis', [JITController::class, 'index'])->name('jit.index');
+Route::post('/jit-analysis', [JITController::class, 'analyze'])->name('jit.analyze');
 
 
