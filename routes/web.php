@@ -24,7 +24,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[AuthController::class, 'index'])
     ->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
 
+Route::post('/login', [AuthController::class, 'login'])
+    ->name('login.post');
 
 
 
@@ -58,5 +62,8 @@ Route::get(uri:'/forecast', action: [ForecastController::class, 'index'])
 
 Route::get('/jit-analysis', [JITController::class, 'index'])->name('jit.index');
 Route::post('/jit-analysis', [JITController::class, 'analyze'])->name('jit.analyze');
+
+Route::get('/notifications/fetch', [JITController::class, 'fetchNotifications'])->name('notifications.fetch');
+Route::post('/jit-recommendations/{recommendation}/acknowledge', [JITController::class, 'acknowledge'])->name('jit.acknowledge');
 
 

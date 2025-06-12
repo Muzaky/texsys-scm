@@ -21,7 +21,7 @@ class AuthController extends Controller
         if (auth()->attempt($request->only('email', 'password'))) {
             $user = auth()->user();
             session(['name' => $user->name, 'role_id' => $user->role_id]);
-            return redirect()->route('home');
+            return redirect()->route('dashboard')->with('success', 'Welcome back, ' . $user->name . '!');
         }
 
         return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
@@ -30,7 +30,7 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        session()->forget(['name', 'role_id']);
+        session()->forget(['name', 'id']);
         return redirect()->route('login')->with('success', 'You have been logged out successfully.');
     }
 }

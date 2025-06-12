@@ -6,7 +6,9 @@ use App\Models\BahanBaku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\Models\LogTransaksi; // Pastikan model LogTransaksi sudah ada
+use App\Models\LogTransaksi; 
+use App\Models\JitRecommendation;
+use App\Enums\RecommendationStatus;
 
 class MaterialController extends Controller
 {
@@ -51,6 +53,23 @@ class MaterialController extends Controller
                     'catatan' => $catatanOperasi,
                 ]);
                 Log::info("LogTransaksi (BahanBaku addition) created successfully for ID: {$bahanBaku->id}.");
+            }
+
+            $recommendation = JitRecommendation::where('item_type', BahanBaku::class)
+                                               ->where('item_id', $id)
+                                               ->where('status', 'PENDING')
+                                               ->first();
+
+            if ($recommendation) {
+                // Jika jumlah yang ditambahkan lebih besar atau sama dengan yang direkomendasikan
+                if ($jumlahDitambah >= $recommendation->recommended_quantity) {
+                    // Tandai sebagai selesai
+                    $recommendation->status = RecommendationStatus::COMPLETED;
+                } else {
+                    // Jika kurang, kurangi jumlah yang direkomendasikan
+                    $recommendation->recommended_quantity -= $jumlahDitambah;
+                }
+                $recommendation->save();
             }
 
          

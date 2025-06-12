@@ -9,7 +9,7 @@
 
         <main class="flex-1 p-8 overflow-y-auto custom-scrollbar">
             <header class="flex justify-between items-center mb-8">
-                <h1 class="text-3xl font-semibold text-gray-900">Selamat Datang, Ligar</h1>
+                <h1 class="text-3xl font-normal text-gray-900">Selamat Datang, {{ Auth::user()->name }}</h1>
             </header>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">

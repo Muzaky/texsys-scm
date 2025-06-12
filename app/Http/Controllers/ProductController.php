@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use App\Enums\RecommendationStatus;
 use App\Models\ProdukJadi;
 use App\Models\LogTransaksi;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use App\Models\JitRecommendation;
 
 class ProductController extends Controller
 {
@@ -164,7 +165,7 @@ class ProductController extends Controller
                     'tipe_item' => 'produk_jadi',
                     'item_id' => $produkJadi->id,
                     'tipe_transaksi' => 'HASIL_PRODUKSI',
-                    'jumlah' => $jumlahProdukJadiDitambah,
+                    'jumlah' => -$jumlahProdukJadiDitambah,
                     'catatan' => $catatanOperasi,
                 ]);
                 if ($logEntry && $logEntry->id) {
@@ -172,6 +173,23 @@ class ProductController extends Controller
                 } else {
                     Log::error("Failed to create LogTransaksi for ProdukJadi addition.", ['data_sent' => $request->all()]);
                 }
+            }
+
+             $recommendation = JitRecommendation::where('item_type', ProdukJadi::class)
+                                               ->where('item_id', $produkJadiId)
+                                               ->where('status', 'PENDING')
+                                               ->first();
+
+            if ($recommendation) {
+                // Jika jumlah yang ditambahkan lebih besar atau sama dengan yang direkomendasikan
+                if ($jumlahProdukJadiDitambah >= $recommendation->recommended_quantity) {
+                    // Tandai sebagai selesai
+                     $recommendation->status = RecommendationStatus::COMPLETED;
+                } else {
+                    // Jika kurang, kurangi jumlah yang direkomendasikan
+                    $recommendation->recommended_quantity -= $jumlahProdukJadiDitambah;
+                }
+                $recommendation->save();
             }
 
             DB::commit();
@@ -239,7 +257,7 @@ class ProductController extends Controller
                     'tipe_item' => 'produk_jadi',
                     'item_id' => $produkJadi->id,
                     'tipe_transaksi' => 'PENGURANGAN_STOK_PRODUK', 
-                    'jumlah' => $jumlahStokOperasi, 
+                    'jumlah' => -$jumlahStokOperasi, 
                     'catatan' => $catatan,
                 ]);
 
