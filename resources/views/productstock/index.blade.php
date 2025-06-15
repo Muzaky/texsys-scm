@@ -96,7 +96,7 @@
                         </div>
                     @endif
 
-                    <form method="GET" action="{{ url()->current() }}" id="mainSearchFilterForm" class="mb-6">
+                    <form method="GET" action="{{ url()->current() }}" id="mainSearchFilterForm" class="mb-2">
                         <div class="grid grid-cols-1 md:grid-cols-9 gap-4 items-end">
 
                             <div class="md:col-span-5">
@@ -150,7 +150,30 @@
                             </button>
                         </div>
                     </form>
-
+                   
+                    @if (isset($hasAnyRecommendations) && $hasAnyRecommendations && $pendingRecommendationsCount === 0)
+                        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded-md"
+                            role="alert">
+                            <div class="flex">
+                                <div class="py-1"><i class="fas fa-check-circle fa-lg mr-3 text-green-500"></i></div>
+                                <div>
+                                    <p class="font-bold">Target Terpenuhi</p>
+                                    <p class="text-sm">Semua barang sudah memenuhi target prediksi dari analisis JIT.</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if (isset($hasAnyRecommendations) && $hasAnyRecommendations && $pendingRecommendationsCount === 0)
+                     <div id="notifications-container" class="text-gray-400 text-sm px-2 py-2 border border-green-300 bg-green-100 mb-2 rounded lg flex flex-row items-center">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <p>Berdasarkan prediksi, barang stok produk jadi telah memenuhi target.</p>
+                    </div>
+                    @else
+                    <div id="notifications-container" class="text-gray-400 text-sm px-2 py-2 border border-yellow-300 bg-yellow-100 mb-2 rounded lg flex flex-row items-center">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <p>Berdasarkan prediksi, barang stok produk jadi belum memenuhi target.</p>
+                    </div>
+                    @endif
 
                     <div class="overflow-x-auto rounded-lg border border-gray-200">
                         <table class="min-w-full divide-y divide-gray-200">

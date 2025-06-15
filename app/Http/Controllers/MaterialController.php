@@ -61,12 +61,12 @@ class MaterialController extends Controller
                                                ->first();
 
             if ($recommendation) {
-                // Jika jumlah yang ditambahkan lebih besar atau sama dengan yang direkomendasikan
+                
                 if ($jumlahDitambah >= $recommendation->recommended_quantity) {
-                    // Tandai sebagai selesai
+                    
                     $recommendation->status = RecommendationStatus::COMPLETED;
                 } else {
-                    // Jika kurang, kurangi jumlah yang direkomendasikan
+               
                     $recommendation->recommended_quantity -= $jumlahDitambah;
                 }
                 $recommendation->save();

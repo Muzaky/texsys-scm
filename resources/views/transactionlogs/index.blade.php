@@ -13,7 +13,7 @@
                 <div class="bg-white p-6 rounded-2xl shadow-md">
 
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-2xl font-semibold text-gray-800">Log Transaksi</h2>
+                        <h2 class="text-2xl font-normal text-gray-800">Log Transaksi</h2>
 
                     </div>
            

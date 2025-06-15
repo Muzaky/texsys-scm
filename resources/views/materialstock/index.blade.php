@@ -16,10 +16,13 @@
                 <div class="bg-white p-6 rounded-2xl shadow-md">
 
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-2xl font-semibold text-gray-800">Data Inventory Stok Bahan Baku</h2>
+                        <h2 class="text-2xl font-normal text-gray-800">Data Inventory Stok Bahan Baku</h2>
+
+                    </div>
+                    <div class="flex justify-end items-center mb-4">
 
                         <button type="button" x-on:click="isModalOpen = true"
-                            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out shadow-sm">
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white font-normal py-2 px-4 rounded-lg flex items-center transition duration-150 ease-in-out shadow-sm ">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -62,14 +65,19 @@
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Nama</th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Level Stok</th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Satuan</th>
+
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Harga</th>
+                                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Kondisi</th>
+
+                                    <th scope="col"
+                                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Harga/satuan</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -79,11 +87,29 @@
                                             TDX{{ $item->id }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->nama }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-bold">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-bold text-center">
                                             {{ $item->stok_level }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->satuan }}
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">{{ $item->satuan }}
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                            @if ($item->stok_level > 500)
+                                                <span
+                                                    class="px-4 inline-flex text-xs leading-5 font-normal rounded-full bg-green-100 text-green-800">
+                                                    Normal
+                                                </span>
+                                            @elseif ($item->stok_level < 500 && $item->stok_level > 0)
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-normal rounded-full bg-yellow-100 text-yellow-800">
+                                                    Low Stock
+                                                </span>
+                                            @else
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-normal rounded-full bg-red-100 text-red-800">
+                                                    Out of Stock
+                                                </span>
+                                            @endif
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">Rp
                                             {{ number_format($item->harga, 0, ',', '.') }}</td>
                                     </tr>
                                 @empty
@@ -131,10 +157,9 @@
                             <label for="material_id" class="block text-sm font-medium text-gray-700 mb-1">
                                 Pilih Bahan Baku <span class="text-red-500">*</span>
                             </label>
-                         
+
                             <div class="relative mt-1">
                                 <select name="material_id" id="material_id" x-model="selectedMaterialId"
-                                 
                                     class="appearance-none block w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm py-2.5 pl-3 pr-10 @error('material_id') border-red-500 @enderror"
                                     required>
                                     <option value="">-- Pilih Bahan Baku --</option>
@@ -146,7 +171,7 @@
                                     @endforeach
                                 </select>
 
-                              
+
                                 <div
                                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"

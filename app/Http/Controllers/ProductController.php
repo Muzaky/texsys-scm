@@ -46,12 +46,19 @@ class ProductController extends Controller
             ->orderBy('kategori')
             ->get();
 
+        $hasAnyRecommendations = JitRecommendation::exists();
+  
+        $pendingRecommendationsCount = JitRecommendation::where('status', RecommendationStatus::PENDING)->count();
+    
+
         return view('productstock.index', [
             'product' => $product,
             'searchQuery' => $searchQuery,
             'filterStokLebihBesar50' => $filterStokLebihBesar50,
             'filterHargaLebihBesar500k' => $filterHargaLebihBesar500k,
             'allProdukJadiForDropdown' => $allProdukJadiForDropdown,
+            'hasAnyRecommendations' => $hasAnyRecommendations,
+            'pendingRecommendationsCount' => $pendingRecommendationsCount,
         ]);
     }
 

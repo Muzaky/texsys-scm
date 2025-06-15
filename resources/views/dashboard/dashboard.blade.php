@@ -19,9 +19,7 @@
                     <div class="bg-white p-6 rounded-2xl shadow-md">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-lg font-semibold text-gray-700">Overview Penjualan</h2>
-                            <button class="text-gray-500 hover:text-gray-700">
-                                <i class="fas fa-ellipsis-h"></i>
-                            </button>
+                            
                         </div>
 
                         <div class="w-full h-64 mb-6">
@@ -75,7 +73,7 @@
 
                     <div class="bg-white p-6 rounded-2xl shadow-md mt-6">
                         <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-lg font-semibold text-gray-700">RINCIAN PENJUALAN ({{ $keteranganPeriode }})
+                            <h2 class="text-lg font-semibold text-gray-700">Rincian Penjualan ({{ $keteranganPeriode }})
                             </h2>
                         </div>
 
@@ -157,7 +155,7 @@
                     <div class="bg-white p-6 rounded-2xl shadow-md">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-lg font-semibold text-gray-700">STOCK BAHAN BAKU</h2>
-                            <button class="text-gray-500 hover:text-gray-700"><i class="fas fa-chevron-right"></i></button>
+                            
                         </div>
                         <p class="text-gray-600 text-sm mb-2">Total Nilai Stock</p>
                         <p class="text-3xl font-bold text-gray-900 mb-4">Rp
@@ -236,9 +234,7 @@
                     <div class="bg-white p-6 rounded-2xl shadow-md mt-6">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-lg font-semibold text-gray-700">STOCK PRODUK JADI</h2>
-                            <a href="" class="text-gray-500 hover:text-gray-700" title="Lihat Semua Produk Jadi">
-                                <i class="fas fa-chevron-right"></i>
-                            </a>
+                            
                         </div>
                         <p class="text-gray-600 text-sm mb-2">Total Nilai Stock</p>
                         <p class="text-3xl font-bold text-gray-900 mb-4">
@@ -327,8 +323,7 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            // --- PERUBAHAN UTAMA DI SINI ---
-                            // Menambahkan judul dinamis ke dalam chart
+                            
                             title: {
                                 display: true,
                                 text: 'Grafik Penjualan (' + keteranganPeriode + ')',

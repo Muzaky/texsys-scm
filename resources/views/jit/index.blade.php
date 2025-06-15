@@ -7,7 +7,7 @@
 
     <div class="flex-1 p-6 md:p-8 overflow-y-auto custom-scrollbar">
         <div class="bg-white p-6 md:p-10 rounded-2xl shadow-xl">
-            <h2 class="text-2xl font-bold text-indigo-700 mb-8 text-center">Analisis Perencanaan Produksi & Bahan Baku (JIT)</h2>
+            <h2 class="text-2xl font-bold text-indigo-700 mb-8 text-center">Prediksi Penjualan & Stock Bahan Baku</h2>
 
             {{-- Container untuk notifikasi (sukses/error) --}}
             <div id="notification-container" class="mb-6">

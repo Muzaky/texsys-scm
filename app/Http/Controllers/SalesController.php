@@ -155,7 +155,7 @@ class SalesController extends Controller
                     'tipe_item' => 'produk_jadi',
                     'item_id' => $originalProdukJadi->id,
                     'tipe_transaksi' => 'PENGEMBALIAN STOK (EDIT PENJUALAN)',
-                    'jumlah' => $validatedData['original_jumlah_terjual'], 
+                    'jumlah' => -$validatedData['original_jumlah_terjual'], 
                     'catatan' => "Stok dikembalikan dari {$originalProdukJadi->kategori} karena edit penjualan TRF{$penjualan->id}. {$catatanLog}",
                 ]);
             }

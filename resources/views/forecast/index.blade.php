@@ -11,7 +11,7 @@
         <div class="bg-white p-6 md:p-10 rounded-2xl shadow-xl">
 
    
-            <h2 class="text-2xl font-bold text-indigo-700 mb-8 text-center">
+            <h2 class="text-2xl font-normal text-indigo-700 mb-8 text-center">
                 Prediksi Permintaan
             </h2>
 
